@@ -1,13 +1,16 @@
 import './App.css'
+import { AdvancedFilters } from './advanced-filters/AdvancedFilters'
+import { Users } from './users/Users'
 
 function App() {
 
   return (
     <>
       <div>
-        <p>It works and you found me!</p>
+        <Users />
+        <AdvancedFilters />
       </div>
-      <h1>Vite + React</h1>
+      <h3>twitter.com/ajinkyax</h3>
     </>
   )
 }
