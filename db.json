@@ -1,0 +1,32 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Ajinkya Borade",
+            "city": "Pune",
+            "country": "India"
+        },
+        {
+            "id": 2,
+            "name": "Sejal",
+            "city": "Pune",
+            "country": "India"
+        },
+        {
+            "id": 3,
+            "name": "Narayana Walters",
+            "city": "Basel",
+            "country": "Switzerland"
+        },
+        {
+            "id": 3,
+            "name": "Davide Walsh",
+            "city": "Zurich",
+            "country": "Switzerland"
+        }
+    ],
+    "settings": {
+        "city": "Pune",
+        "country": "India"
+    }
+}
