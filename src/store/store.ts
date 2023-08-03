@@ -1,10 +1,8 @@
 import { combineReducers, configureStore, EnhancedStore } from '@reduxjs/toolkit'
-import { filteredUsersSlice } from './filtered-users/filtered-users.slice'
 import { usersApi } from '../api/users.api'
 
 const store = ({ initialAction = {}, initialState = {} }): EnhancedStore => {
     const reducer = combineReducers({
-        [filteredUsersSlice.name]: filteredUsersSlice.reducer,
         [usersApi.reducerPath]: usersApi.reducer,
     })
 

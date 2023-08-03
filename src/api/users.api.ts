@@ -15,23 +15,27 @@ type FilterCriteriaArgs = FilterCriteria
 export const usersApi = createApi({
     reducerPath: 'usersApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000' }),
+    tagTypes: ['Users', 'Settings'],
     endpoints: (builder) => ({
         getUsers: builder.query<User[], QueryArgs>({
             query: () => ({
                 url: '/users'
             }),
+            providesTags: ['Users']
         }),
         getFilterCriteria: builder.query<FilterCriteria, QueryArgs>({
             query: () => ({
                 url: '/settings'
-            })
+            }),
+            providesTags: ['Settings']
         }),
         setFilterCriteria: builder.mutation<FilterCriteria, FilterCriteriaArgs>({
             query: (queryArgs) => ({
                 url: '/settings',
                 method: 'POST',
                 body: queryArgs
-            })
+            }),
+            invalidatesTags: ['Settings', 'Users']
         })
     }),
 })

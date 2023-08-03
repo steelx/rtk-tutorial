@@ -22,7 +22,7 @@ export const AdvancedFilters: React.FC = () => {
                         <option value="">--Select--</option>
                         <option value="Pune">Pune</option>
                         <option value="Basel">Basel</option>
-                        <option value="Paris">Mumbai</option>
+                        <option value="Mumbai">Mumbai</option>
                     </select>
                 </fieldset>
 
