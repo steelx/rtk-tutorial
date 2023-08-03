@@ -1,6 +1,10 @@
 import React from "react";
+import { useFilteredUsersState } from "../store/filtered-users/filtered-users.slice";
+import { useGetUsersQuery } from "../api/users.api";
 
 export const Users: React.FC = () => {
+    useGetUsersQuery({})
+    const state = useFilteredUsersState()
 
     return (
         <section>
@@ -14,11 +18,15 @@ export const Users: React.FC = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>John Doe</td>
-                        <td>London</td>
-                        <td>United Kingdom</td>
-                    </tr>
+                    {
+                        state.users.map((user) => (
+                            <tr key={user.id}>
+                                <td>{user.name}</td>
+                                <td>{user.city}</td>
+                                <td>{user.country}</td>
+                            </tr>
+                        ))
+                    }
                 </tbody>
             </table>
         </section>
