@@ -4,6 +4,13 @@ import { EmptyObject } from '@reduxjs/toolkit'
 
 type QueryArgs = EmptyObject
 
+export type FilterCriteria = {
+    city?: string
+    country?: string
+}
+
+type FilterCriteriaArgs = FilterCriteria
+
 
 export const usersApi = createApi({
     reducerPath: 'usersApi',
@@ -12,9 +19,27 @@ export const usersApi = createApi({
         getUsers: builder.query<User[], QueryArgs>({
             query: () => ({
                 url: '/users'
+            }),
+        }),
+        getFilterCriteria: builder.query<FilterCriteria, QueryArgs>({
+            query: () => ({
+                url: '/settings'
+            })
+        }),
+        setFilterCriteria: builder.mutation<FilterCriteria, FilterCriteriaArgs>({
+            query: (queryArgs) => ({
+                url: '/settings',
+                method: 'POST',
+                body: queryArgs
             })
         })
     }),
 })
 
-export const { useGetUsersQuery } = usersApi
+export const { useGetUsersQuery, useSetFilterCriteriaMutation, useGetFilterCriteriaQuery } = usersApi
+
+export const getUsersSelector = usersApi.endpoints.getUsers.select
+export const getFilterCriteriaSelector = usersApi.endpoints.getFilterCriteria.select
+
+
+

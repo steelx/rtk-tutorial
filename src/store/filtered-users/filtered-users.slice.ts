@@ -15,7 +15,12 @@ const initialState: FilteredUsersState = {
 export const filteredUsersSlice = createSlice({
     name: 'filteredUsers',
     initialState,
-    reducers: {},
+    reducers: {
+        setFilterCriteria: (state, action) => {
+            console.log('action.payload', action.payload);
+            state.filterCriteria = action.payload
+        }
+    },
     extraReducers: (builder) => {
         builder.addMatcher(
             usersApi.endpoints.getUsers.matchFulfilled,
@@ -29,3 +34,4 @@ export const filteredUsersSlice = createSlice({
 export const useFilteredUsersState = (): FilteredUsersState => 
     useAppSelector((state: RootState) => state.filteredUsers)
 
+export const { setFilterCriteria } = filteredUsersSlice.actions

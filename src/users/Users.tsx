@@ -1,10 +1,15 @@
 import React from "react";
-import { useFilteredUsersState } from "../store/filtered-users/filtered-users.slice";
-import { useGetUsersQuery } from "../api/users.api";
+import { useGetFilterCriteriaQuery, useGetUsersQuery } from "../api/users.api";
+import { selectFilteredUsers } from "./selectors";
+import { useAppSelector } from "../store/redux-hooks";
 
 export const Users: React.FC = () => {
     useGetUsersQuery({})
-    const state = useFilteredUsersState()
+    useGetFilterCriteriaQuery({})
+    
+    const data = useAppSelector(selectFilteredUsers)
+
+    
 
     return (
         <section>
@@ -19,7 +24,7 @@ export const Users: React.FC = () => {
                 </thead>
                 <tbody>
                     {
-                        state.users.map((user) => (
+                        data.map((user) => (
                             <tr key={user.id}>
                                 <td>{user.name}</td>
                                 <td>{user.city}</td>
