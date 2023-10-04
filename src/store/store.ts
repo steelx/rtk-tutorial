@@ -1,8 +1,9 @@
 import { combineReducers, configureStore, EnhancedStore } from '@reduxjs/toolkit'
+import { usersApi } from '../api/users.api'
 
 const store = ({ initialAction = {}, initialState = {} }): EnhancedStore => {
     const reducer = combineReducers({
-        // ...
+        [usersApi.reducerPath]: usersApi.reducer,
     })
 
     // @ts-expect-error typeof initialAction not defined
@@ -11,9 +12,12 @@ const store = ({ initialAction = {}, initialState = {} }): EnhancedStore => {
     return configureStore({
         reducer,
         preloadedState,
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-            serializableCheck: false,
-        }),
+        middleware: (getDefaultMiddleware) => [
+            ...getDefaultMiddleware({
+                serializableCheck: false,
+            }),
+            usersApi.middleware,
+        ],
         devTools: {
             name: '@ajinkyax'
         }

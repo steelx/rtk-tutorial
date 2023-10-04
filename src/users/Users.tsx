@@ -1,6 +1,8 @@
 import React from "react";
+import { useFilteredUsers } from "./useFilteredUsers";
 
 export const Users: React.FC = () => {
+    const { users } = useFilteredUsers()
 
     return (
         <section>
@@ -14,11 +16,15 @@ export const Users: React.FC = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>John Doe</td>
-                        <td>London</td>
-                        <td>United Kingdom</td>
-                    </tr>
+                    {
+                        users.map((user) => (
+                            <tr key={user.id}>
+                                <td>{user.name}</td>
+                                <td>{user.city}</td>
+                                <td>{user.country}</td>
+                            </tr>
+                        ))
+                    }
                 </tbody>
             </table>
         </section>
